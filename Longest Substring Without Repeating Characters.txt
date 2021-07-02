@@ -1,0 +1,31 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+			return 0;
+		}
+
+		Set<Character> set = new HashSet<>();
+		int left = 0;
+		int right = 0;
+		int max = 0;
+
+		while (right < s.length() && left <= right) {
+			//if element not exist in set add and return true
+			if (set.add(s.charAt(right))) {
+				//move to next element to increase window size
+				right++;
+				max = Math.max(max, set.size());
+			} else {
+				//shrink the window size
+				set.remove(s.charAt(left));
+				left++;
+			}
+
+		}
+		return max;
+	}
+}
+   
+    
+
+    
